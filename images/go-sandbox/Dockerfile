@@ -32,5 +32,6 @@ WORKDIR /app
 USER ${USER}
 SHELL ["/bin/bash", "-c"]
 
+# Clone QT 5.13.
 RUN git clone https://github.com/therecipe/env_linux_amd64_513.git \
     /env_linux_amd64_513

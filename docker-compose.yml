@@ -17,12 +17,12 @@ services:
         - DOCKER_GID
     hostname: go-sandbox
     environment:
-      - GOPROXY=http://goproxy:8081
+      - GOPROXY=http://goproxy:3000
       - GOOS=linux
       - GOARCH=amd64
       - GO111MODULE=on
     volumes:
-      - ./:/app
+      - ./app:/app
     stdin_open: yes
     tty: yes
     networks:
@@ -31,7 +31,7 @@ services:
       - goproxy
 
   goproxy:
-    image: goproxy/goproxy
+    image: goproxy:sandbox
     build:
       context: images/goproxy
       args:
@@ -41,8 +41,7 @@ services:
     networks:
       - demonet
     ports:
-      - 8081
-    environment:
-      - GOPATH=/go
+      - 3000
     volumes:
-      - ./.cache:/go
+      - ./.cache:/cache
+    #restart: always
