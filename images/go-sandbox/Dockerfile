@@ -7,7 +7,7 @@ ARG GID
 ARG DOCKER_GID
 
 ENV GOPATH=/go
-ENV PATH="${PATH}:/go/bin"
+ENV PATH="${PATH}:/go/bin:/env_linux_amd64_513/5.13.0/gcc_64/bin"
 
 RUN apt-get update && apt-get -y install \
     build-essential \
@@ -35,10 +35,9 @@ SHELL ["/bin/bash", "-c"]
 RUN git clone https://github.com/therecipe/env_linux_amd64_513.git \
     /env_linux_amd64_513
 
-# TODO
-# # Get the emsdk repo.
-# RUN git clone https://github.com/emscripten-core/emsdk.git /tmp/emscripten \
-#     && cd /tmp/emscripten \
-#     && ./emsdk install latest \
-#     && ./emsdk activate latest \
-#     && source ./emsdk_env.sh
+# Get the emsdk repo.
+RUN git clone https://github.com/emscripten-core/emsdk.git /tmp/emscripten \
+    && cd /tmp/emscripten \
+    && ./emsdk install latest \
+    && ./emsdk activate latest \
+    && source ./emsdk_env.sh
