@@ -35,9 +35,9 @@ SHELL ["/bin/bash", "-c"]
 RUN git clone https://github.com/therecipe/env_linux_amd64_513.git \
     /env_linux_amd64_513
 
-# Get the emsdk repo.
-RUN git clone https://github.com/emscripten-core/emsdk.git /tmp/emscripten \
-    && cd /tmp/emscripten \
-    && ./emsdk install latest \
-    && ./emsdk activate latest \
-    && source ./emsdk_env.sh
+# # Get the emsdk repo.
+# RUN git clone https://github.com/emscripten-core/emsdk.git /tmp/emscripten \
+#     && cd /tmp/emscripten \
+#     && ./emsdk install latest \
+#     && ./emsdk activate latest \
+#     && source ./emsdk_env.sh
