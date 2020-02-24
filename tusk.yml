@@ -1,0 +1,42 @@
+options:
+  user:
+    default:
+      command: id -un
+  group:
+    default:
+      command: id -gn
+  uid:
+    default:
+      command: id -u
+  gid:
+    default:
+      command: id -g
+  docker_gid:
+    default:
+      command: echo 65535
+
+tasks:
+  sandbox.build:
+    run:
+      - command: >
+          docker-compose build
+          --pull
+          --build-arg USER=${user}
+          --build-arg GROUP=${group}
+          --build-arg UID=${uid}
+          --build-arg GID=${gid}
+          --build-arg DOCKER_GID=${docker_gid}
+      - command: docker image prune -f
+
+  sandbox.up:
+    run:
+      - command: docker-compose up -d go
+
+  sandbox.setup:
+    run:
+      - command: docker-compose exec go go get -u -v github.com/therecipe/qt
+      - command: docker-compose exec go go install -v -tags=no_env github.com/therecipe/qt/cmd/...
+      - command: docker-compose exec go go mod download
+      - command: docker-compose exec go go mod vendor
+      - command: docker-compose exec go ln -s $GOPATH/src/github.com/therecipe/env_linux_amd64_513 /app/vendor/github.com/therecipe/env_linux_amd64_513
+      - command: docker-compose exec go qtsetup

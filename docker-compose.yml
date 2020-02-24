@@ -1,0 +1,35 @@
+version: "3.7"
+
+networks:
+  demonet:
+
+services:
+  go:
+    image: go-sandbox:sandbox
+    build:
+      context: .
+      dockerfile: images/go-sandbox/Dockerfile
+      args:
+        - USER
+        - GROUP
+        - UID
+        - GID
+        - DOCKER_GID
+    hostname: go-sandbox
+    environment:
+      - GOPROXY=athens:3000
+    volumes:
+      - ./:/app
+    stdin_open: yes
+    tty: yes
+    networks:
+      - demonet
+    depends_on:
+      - athens
+
+  athens:
+    image: gomods/athens
+    networks:
+      - demonet
+    ports:
+      - 3000
