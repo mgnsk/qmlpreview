@@ -17,7 +17,10 @@ services:
         - DOCKER_GID
     hostname: go-sandbox
     environment:
-      - GOPROXY=athens:3000
+      - GOPROXY=http://goproxy:8081
+      - GOOS=linux
+      - GOARCH=amd64
+      - GO111MODULE=on
     volumes:
       - ./:/app
     stdin_open: yes
@@ -25,11 +28,21 @@ services:
     networks:
       - demonet
     depends_on:
-      - athens
+      - goproxy
 
-  athens:
-    image: gomods/athens
+  goproxy:
+    image: goproxy/goproxy
+    build:
+      context: images/goproxy
+      args:
+        - USER
+        - UID
+        - GID
     networks:
       - demonet
     ports:
-      - 3000
+      - 8081
+    environment:
+      - GOPATH=/go
+    volumes:
+      - ./.cache:/go

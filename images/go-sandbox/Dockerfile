@@ -7,9 +7,6 @@ ARG GID
 ARG DOCKER_GID
 
 ENV GOPATH=/app/.go
-ENV GOOS=linux
-ENV GOARCH=amd64
-ENV GO111MODULE=on
 ENV PATH="${PATH}:${GOPATH}/bin:/app/bin"
 
 RUN apt-get update && apt-get -y install \
@@ -28,10 +25,12 @@ RUN groupadd -f -g ${DOCKER_GID} docker \
     && mkdir -p /app \
     && chown -R ${UID}:${GID} /app
 
-WORKDIR /app
 
+RUN mkdir -p /env_linux_amd64_513 && chown -R ${UID}:${GID} /env_linux_amd64_513
+
+WORKDIR /app
 USER ${USER}
 SHELL ["/bin/bash", "-c"]
 
 RUN git clone https://github.com/therecipe/env_linux_amd64_513.git \
-    ${GOPATH}/src/github.com/therecipe/env_linux_amd64_513
+    /env_linux_amd64_513

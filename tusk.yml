@@ -32,11 +32,16 @@ tasks:
     run:
       - command: docker-compose up -d go
 
-  sandbox.setup:
+  sandbox.down:
+    run:
+      - command: docker-compose down
+
+  sandbox.qtsetup:
     run:
       - command: docker-compose exec go go get -u -v github.com/therecipe/qt
       - command: docker-compose exec go go install -v -tags=no_env github.com/therecipe/qt/cmd/...
       - command: docker-compose exec go go mod download
       - command: docker-compose exec go go mod vendor
-      - command: docker-compose exec go ln -s $GOPATH/src/github.com/therecipe/env_linux_amd64_513 /app/vendor/github.com/therecipe/env_linux_amd64_513
+      - command: docker-compose exec go ln -s /env_linux_amd64_513 /app/vendor/github.com/therecipe/env_linux_amd64_513
       - command: docker-compose exec go qtsetup
+    #  export GO111MODULE=on; go get -v github.com/therecipe/qt && go install -v -tags=no_env github.com/therecipe/qt/cmd/... && go mod vendor && git clone https://github.com/therecipe/env_linux_amd64_513.git vendor/github.com/therecipe/env_linux_amd64_513 && \$(go env GOPATH)/bin/qtsetup
