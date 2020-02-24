@@ -36,6 +36,10 @@ tasks:
     run:
       - command: docker-compose down
 
+  sandbox.bash:
+    run:
+      - command: docker-compose exec go /bin/bash
+
   sandbox.qtsetup:
     run:
       - command: docker-compose exec go go get -u -v github.com/therecipe/qt

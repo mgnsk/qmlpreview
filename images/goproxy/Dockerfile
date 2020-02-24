@@ -1,8 +1,4 @@
-FROM goproxy/goproxy as base
-
-
-FROM golang:alpine as final
-COPY --from=base /goproxy /goproxy
+FROM golang:alpine
 
 ARG USER
 ARG GID
@@ -11,6 +7,9 @@ ARG UID
 EXPOSE 3000
 
 ENV GOPATH=/go
+ENV CGO_ENABLED=0
+
+RUN apk add --no-cache -U make git
 
 RUN addgroup --gid ${GID} ${USER} \
     && adduser \
@@ -22,11 +21,13 @@ RUN addgroup --gid ${GID} ${USER} \
     --uid ${UID} \
     ${USER}
 
-RUN mkdir -p /go \
-    && mkdir -p /cache \
-    && chown -R ${UID}:${GID} /go \
-    && chown -R ${UID}:${GID} /cache 
+RUN mkdir -p /build && chown -R ${UID}:${GID} /build
 
 USER ${USER}
+WORKDIR /build
 
-CMD ["/goproxy", "-listen=0.0.0.0:3000", "-cacheDir=/cache"]
+RUN git clone https://github.com/goproxyio/goproxy.git .
+
+RUN make
+
+CMD ["/build/bin/goproxy", "-listen=0.0.0.0:3000", "-cacheDir=/go"]

@@ -23,6 +23,7 @@ services:
       - GO111MODULE=on
     volumes:
       - ./app:/app
+      - ./.go:/go
     stdin_open: yes
     tty: yes
     networks:
@@ -33,7 +34,8 @@ services:
   goproxy:
     image: goproxy:sandbox
     build:
-      context: images/goproxy
+      context: .
+      dockerfile: images/goproxy/Dockerfile
       args:
         - USER
         - UID
@@ -43,5 +45,4 @@ services:
     ports:
       - 3000
     volumes:
-      - ./.cache:/cache
-    #restart: always
+      - ./.go:/go

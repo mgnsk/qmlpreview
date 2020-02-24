@@ -6,8 +6,8 @@ ARG UID
 ARG GID
 ARG DOCKER_GID
 
-ENV GOPATH=/app/.go
-ENV PATH="${PATH}:${GOPATH}/bin:/app/bin"
+ENV GOPATH=/go
+ENV PATH="${PATH}:/go/bin"
 
 RUN apt-get update && apt-get -y install \
     build-essential \
@@ -24,7 +24,6 @@ RUN groupadd -f -g ${DOCKER_GID} docker \
     && useradd -m -u ${UID} -g ${GID} -G ${DOCKER_GID} ${USER} -s /bin/bash \
     && mkdir -p /app \
     && chown -R ${UID}:${GID} /app
-
 
 RUN mkdir -p /env_linux_amd64_513 && chown -R ${UID}:${GID} /env_linux_amd64_513
 
