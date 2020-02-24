@@ -14,3 +14,12 @@ Setup direnv and allow .envrc first.
 `$ tusk sandbox.up`
 
 `$ tusk sandbox.qtsetup`
+
+`$ tusk sandbox.qtrcc`
+
+`$ tusk app.build`
+
+Run the example on host machine:
+
+`$ cd ./app/cmd/example/deploy/linux`
+`$ ./example`

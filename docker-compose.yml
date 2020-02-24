@@ -24,6 +24,7 @@ services:
     volumes:
       - ./app:/app
       - ./.go:/go
+      - ./.emscripten:/home/${USER}/.emcripten
     stdin_open: yes
     tty: yes
     networks:

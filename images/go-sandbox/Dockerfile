@@ -31,6 +31,14 @@ WORKDIR /app
 USER ${USER}
 SHELL ["/bin/bash", "-c"]
 
-# Clone QT 5.13.
+# Clone QT 5.13. (QT setup is done later)
 RUN git clone https://github.com/therecipe/env_linux_amd64_513.git \
     /env_linux_amd64_513
+
+# TODO
+# # Get the emsdk repo.
+# RUN git clone https://github.com/emscripten-core/emsdk.git /tmp/emscripten \
+#     && cd /tmp/emscripten \
+#     && ./emsdk install latest \
+#     && ./emsdk activate latest \
+#     && source ./emsdk_env.sh
