@@ -13,7 +13,7 @@ options:
       command: id -g
   docker_gid:
     default:
-      # TODO this is here as a placeholder for future ideas.
+      # TODO
       command: echo 65535
 
 tasks:
@@ -22,7 +22,6 @@ tasks:
     run:
       - command: >
           docker-compose build
-          --pull
           --build-arg USER=${user}
           --build-arg GROUP=${group}
           --build-arg UID=${uid}
@@ -33,24 +32,22 @@ tasks:
   sandbox.up:
     usage: Start all containers.
     run:
-      - command: docker-compose up -d go
-
-  sandbox.down:
-    run:
-      - command: docker-compose down
+      - command: mkdir -p qt
+      - command: docker-compose up -d
 
   sandbox.bash:
-    usage: Enter the sandbox shell.
-    description: A useful command for having multiple shells.
+    usage: Enter a sandbox shell.
     run:
       - command: docker-compose exec go /bin/bash
 
   sandbox.qtsetup:
-    usage: Compile and install the QT framework.
+    usage: Download and install the QT framework.
     run:
-      - command: docker-compose exec go go get -u -v github.com/therecipe/qt
+      - command: >
+          [ -z "$(ls -A ./qt)" ] && git clone https://github.com/therecipe/env_linux_amd64_513.git qt || true
+      - command: docker-compose exec go go get -v github.com/therecipe/qt
       - command: docker-compose exec go go install -v -tags=no_env github.com/therecipe/qt/cmd/...
       - command: docker-compose exec go go mod download
       - command: docker-compose exec go go mod vendor
-      - command: docker-compose exec go ln -s /env_linux_amd64_513 /app/vendor/github.com/therecipe/env_linux_amd64_513
+      - command: docker-compose exec go ln -s /qt /app/vendor/github.com/therecipe/env_linux_amd64_513
       - command: docker-compose exec go qtsetup

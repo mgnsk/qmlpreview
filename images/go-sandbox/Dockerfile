@@ -7,8 +7,12 @@ ARG GID
 ARG DOCKER_GID
 
 ENV GOPATH=/go
-ENV PATH="${PATH}:/go/bin:/env_linux_amd64_513/5.13.0/gcc_64/bin"
+ENV PATH="${PATH}:/go/bin:/env_linux_amd64_513/5.13.0/gcc_64/bin:/emscripten:/emscripten/upstream/emscripten:/emscripten/node/12.9.1_64bit/bin"
+ENV EMSDK=/emscripten
+ENV EM_CONFIG=/home/magnus/.emscripten
+ENV EMSDK_NODE=/emscripten/node/12.9.1_64bit/bin/node
 
+# Install QT dependencies.
 RUN apt-get update && apt-get -y install \
     build-essential \
     libglu1-mesa-dev \
@@ -25,19 +29,14 @@ RUN groupadd -f -g ${DOCKER_GID} docker \
     && mkdir -p /app \
     && chown -R ${UID}:${GID} /app
 
-RUN mkdir -p /env_linux_amd64_513 && chown -R ${UID}:${GID} /env_linux_amd64_513
+RUN mkdir -p /emscripten && chown -R ${UID}:${GID} /emscripten
+RUN mkdir -p /qt && chown -R ${UID}:${GID} /qt
 
 WORKDIR /app
 USER ${USER}
-SHELL ["/bin/bash", "-c"]
 
-# Clone QT 5.13. (QT setup is done later)
-RUN git clone https://github.com/therecipe/env_linux_amd64_513.git \
-    /env_linux_amd64_513
-
-# # Get the emsdk repo.
-# RUN git clone https://github.com/emscripten-core/emsdk.git /tmp/emscripten \
-#     && cd /tmp/emscripten \
-#     && ./emsdk install latest \
-#     && ./emsdk activate latest \
-#     && source ./emsdk_env.sh
+# Install emscripten.
+RUN git clone https://github.com/emscripten-core/emsdk.git /emscripten \
+    && cd /emscripten \
+    && ./emsdk install latest \
+    && ./emsdk activate latest

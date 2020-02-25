@@ -1,3 +1,4 @@
-.go
-.cache
-vendor
+.go/
+.cache/
+vendor/
+qt/

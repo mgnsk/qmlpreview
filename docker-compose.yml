@@ -22,9 +22,9 @@ services:
       - GOARCH=amd64
       - GO111MODULE=on
     volumes:
-      - ./app:/app
       - ./.go:/go
-      - ./.emscripten:/home/${USER}/.emcripten
+      - ./app:/app
+      - ./qt:/qt
     stdin_open: yes
     tty: yes
     networks:
