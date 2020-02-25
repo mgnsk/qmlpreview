@@ -42,6 +42,7 @@ tasks:
 
   sandbox.qtsetup:
     usage: Download and install the QT framework.
+    description: If you run go mod vendor again you have to run qtsetup again.
     run:
       - command: >
           [ -z "$(ls -A ./qt)" ] && git clone https://github.com/therecipe/env_linux_amd64_513.git qt || true
