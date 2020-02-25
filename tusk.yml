@@ -13,10 +13,12 @@ options:
       command: id -g
   docker_gid:
     default:
+      # TODO this is here as a placeholder for future ideas.
       command: echo 65535
 
 tasks:
   sandbox.build:
+    usage: Build docker images.
     run:
       - command: >
           docker-compose build
@@ -29,6 +31,7 @@ tasks:
       - command: docker image prune -f
 
   sandbox.up:
+    usage: Start all containers.
     run:
       - command: docker-compose up -d go
 
@@ -37,6 +40,8 @@ tasks:
       - command: docker-compose down
 
   sandbox.bash:
+    usage: Enter the sandbox shell.
+    description: A useful command for having multiple shells.
     run:
       - command: docker-compose exec go /bin/bash
 
@@ -49,15 +54,3 @@ tasks:
       - command: docker-compose exec go go mod vendor
       - command: docker-compose exec go ln -s /env_linux_amd64_513 /app/vendor/github.com/therecipe/env_linux_amd64_513
       - command: docker-compose exec go qtsetup
-
-  sandbox.qtrcc:
-    usage: Pack QML files.
-    run:
-      - command: docker-compose exec go qtrcc linux ./...
-    #  - command: docker-compose exec go qtrcc js ./cmd/example/...
-
-  app.build:
-    usage: Build example app.
-    run:
-      - command: docker-compose exec go qtdeploy build linux ./...
-    #  - command: docker-compose exec go qtdeploy build js ./...
