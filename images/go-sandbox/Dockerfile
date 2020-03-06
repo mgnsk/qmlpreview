@@ -23,7 +23,10 @@ RUN groupadd -f -g ${DOCKER_GID} docker \
     fi \
     && useradd -m -u ${UID} -g ${GID} -G ${DOCKER_GID} ${USER} -s /bin/bash \
     && mkdir -p /app \
-    && chown -R ${UID}:${GID} /app
+    && mkdir -p /go \
+    && chown -R ${UID}:${GID} /app \
+    && chown -R ${UID}:${GID} /go
+
 
 RUN mkdir -p /env_linux_amd64_513 && chown -R ${UID}:${GID} /env_linux_amd64_513
 

@@ -1,7 +1,7 @@
 version: "3.7"
 
-networks:
-  demonet:
+volumes:
+  gocache:
 
 services:
   go:
@@ -17,7 +17,7 @@ services:
         - DOCKER_GID
     hostname: go-sandbox
     environment:
-      - GOPROXY=http://goproxy:3000
+      - GOPROXY=http://goproxy:8081
       - GOOS=linux
       - GOARCH=amd64
       - GO111MODULE=on
@@ -27,23 +27,10 @@ services:
       - ./.emscripten:/home/${USER}/.emcripten
     stdin_open: yes
     tty: yes
-    networks:
-      - demonet
     depends_on:
       - goproxy
 
   goproxy:
-    image: goproxy:sandbox
-    build:
-      context: .
-      dockerfile: images/goproxy/Dockerfile
-      args:
-        - USER
-        - UID
-        - GID
-    networks:
-      - demonet
-    ports:
-      - 3000
+    image: goproxy/goproxy
     volumes:
-      - ./.go:/go
+      - gocache:/go
