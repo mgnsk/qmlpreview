@@ -46,9 +46,9 @@ tasks:
     run:
       - command: >
           [ -z "$(ls -A ./qt)" ] && git clone https://github.com/therecipe/env_linux_amd64_513.git qt || true
-      - command: docker-compose exec go go get -v github.com/therecipe/qt
-      - command: docker-compose exec go go install -v -tags=no_env github.com/therecipe/qt/cmd/...
-      - command: docker-compose exec go go mod download
-      - command: docker-compose exec go go mod vendor
-      - command: docker-compose exec go ln -s /qt /app/vendor/github.com/therecipe/env_linux_amd64_513
-      - command: docker-compose exec go qtsetup
+      - command: docker-compose exec sandbox go get -v github.com/therecipe/qt
+      - command: docker-compose exec sandbox go install -v -tags=no_env github.com/therecipe/qt/cmd/...
+      - command: docker-compose exec sandbox go mod download
+      - command: docker-compose exec sandbox go mod vendor
+      - command: docker-compose exec sandbox ln -s /qt /app/vendor/github.com/therecipe/env_linux_amd64_513
+      - command: docker-compose exec sandbox qtsetup

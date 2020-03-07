@@ -2,29 +2,27 @@ version: "3.7"
 
 volumes:
   gocache:
+  emscripten:
 
 services:
-  go:
-    image: go-sandbox:sandbox
+  sandbox:
+    image: sandbox:sandbox
     build:
-      context: .
-      dockerfile: images/go-sandbox/Dockerfile
+      context: images/sandbox
       args:
         - USER
         - GROUP
         - UID
         - GID
         - DOCKER_GID
-    hostname: go-sandbox
+    hostname: sandbox
     environment:
       - GOPROXY=http://goproxy:8081
-      - GOOS=linux
-      - GOARCH=amd64
-      - GO111MODULE=on
     volumes:
       - ./.go:/go
       - ./app:/app
       - ./qt:/qt
+      - emscripten:/emscripten
     stdin_open: yes
     tty: yes
     depends_on:
