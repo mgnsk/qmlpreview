@@ -16,7 +16,7 @@ ENV GOPATH=/go \
     GOPROXY="${GOPROXY}" \
     GITPROXY="${GITPROXY}" \
     APTPROXY="${APTPROXY}" \
-    PATH="${PATH}:/go/bin:/qt/5.13.0/gcc_64/bin"
+    PATH="${PATH}:/go/bin"
 
 # Use the local apt caching proxy.
 RUN echo "Acquire::HTTP::Proxy \"${APTPROXY}\";" >> /etc/apt/apt.conf.d/01proxy \
@@ -77,6 +77,8 @@ USER ${USER}
 RUN GO111MODULE=off go get -v github.com/therecipe/qt/cmd/...
 
 RUN GO111MODULE=off qtsetup -test=false
+
+ENV PATH="${PATH}:/go/src/github.com/therecipe/env_linux_amd64_513/5.13.0/gcc_64/bin"
 
 RUN bash -c "source /emscripten/emsdk_env.sh"
 

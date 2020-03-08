@@ -21,6 +21,8 @@ services:
         - GITPROXY
         - APTPROXY
     hostname: sandbox
+    environment:
+      - QT_DIR=/go/src/github.com/therecipe/env_linux_amd64_513
     #environment:
     #  - QT_DIR=/app/qt
     # - GOPROXY=http://goproxy:8081
