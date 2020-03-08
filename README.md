@@ -5,23 +5,15 @@
 
 ### Installation:
 
-Setup direnv and allow .envrc first.
+`$ ./build.sh`
 
-`$ sh setup.sh` to install tusk task manager.
-
-`$ tusk sandbox.build`
-
-`$ tusk sandbox.up`
-
-`$ tusk sandbox.qtsetup`
-
-`$ tusk sandbox.bash`
+`$ ./start.sh` to run the container and enter a bash shell.
 
 Now in the sandbox:
 
-`$ qtrcc linux ./...`
+`$ GO111MODULE=off qtrcc linux ./...`
 
-`$ qtdeploy build linux ./...`
+`$ GO111MODULE=off qtdeploy build linux ./...`
 
 Run the example on host machine:
 

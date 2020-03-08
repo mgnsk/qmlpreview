@@ -2,33 +2,64 @@ version: "3.7"
 
 volumes:
   gocache:
-  emscripten:
+  aptcache:
+  gitcache:
 
 services:
   sandbox:
     image: sandbox:sandbox
     build:
       context: images/sandbox
+      target: sandbox
       args:
         - USER
         - GROUP
         - UID
         - GID
         - DOCKER_GID
+        - GOPROXY
+        - GITPROXY
+        - APTPROXY
     hostname: sandbox
-    environment:
-      - GOPROXY=http://goproxy:8081
+    #environment:
+    #  - QT_DIR=/app/qt
+    # - GOPROXY=http://goproxy:8081
+    # EM_CONFIG=/home/magnus/.emscripten \
+    ## EMSDK_NODE=/emscripten/node/12.9.1_64bit/bin/node
+
     volumes:
-      - ./.go:/go
+      #- ./.go:/go
       - ./app:/app
-      - ./qt:/qt
-      - emscripten:/emscripten
+      #- ./qt:/qt
+      # - emscripten:/emscripten
     stdin_open: yes
     tty: yes
     depends_on:
       - goproxy
+      - apt-cacher-ng
+      - git-cache
 
   goproxy:
     image: goproxy/goproxy
     volumes:
       - gocache:/go
+    ports:
+      - "8081:8081"
+    restart: always
+
+  apt-cacher-ng:
+    image: mbentley/apt-cacher-ng
+    container_name: apt-cacher-ng
+    ports:
+      - "3142:3142"
+    volumes:
+      - aptcache:/var/cache/apt-cacher-ng
+    restart: always
+
+  git-cache:
+    image: kurzdigital/git-cache-http-server
+    ports:
+      - "8080:8080"
+    volumes:
+      - gitcache:/tmp/cache/git
+    restart: always
