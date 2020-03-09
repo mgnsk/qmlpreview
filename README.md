@@ -3,20 +3,12 @@
 - `docker`
 - `docker-compose`
 
-### Installation:
+### Deploy the example
 
 `$ ./build.sh`
 
-`$ ./start.sh` to run the container and enter a bash shell.
+`$ ./deploy_linux.sh`
 
-Now in the sandbox:
-
-`$ GO111MODULE=off qtrcc linux ./...`
-
-`$ GO111MODULE=off qtdeploy build linux ./...`
-
-Run the example on host machine:
-
-`$ cd app/cmd/example/deploy/linux`
+`$ cd app/cmd/example/deploy/linux` (other platforms work in progress)
 
 `$ ./example`
