@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-docker-compose up apt-cacher-ng git-cache goproxy
+docker-compose up -d apt-cacher-ng git-cache goproxy
 
 docker-compose build \
     --build-arg USER=$(id -un) \
