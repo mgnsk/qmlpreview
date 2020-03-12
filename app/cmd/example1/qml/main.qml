@@ -16,7 +16,7 @@ ApplicationWindow {
 			id: input
 	
 			anchors.horizontalCenter: parent.horizontalCenter
-			placeholderText: "Write something ..."
+			placeholderText: "TEST test something ..."
 		}
 
 		Button {

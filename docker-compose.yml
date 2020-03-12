@@ -1,67 +1,37 @@
 version: "3.7"
 
 volumes:
-  gocache:
-  aptcache:
-  gitcache:
+  jsdata:
+  linuxdata:
+  wasmdata:
 
 services:
-  sandbox:
-    image: sandbox:sandbox
+  deploy_js:
+    image: sandbox/deployjs
     build:
-      context: images/sandbox
-      target: sandbox
-      args:
-        - USER
-        - GROUP
-        - UID
-        - GID
-        - DOCKER_GID
-        - GOPROXY
-        - GITPROXY
-        - APTPROXY
-    hostname: sandbox
+      context: images/deployjs
     environment:
-      - QT_DIR=/go/src/github.com/therecipe/env_linux_amd64_513
-    #environment:
-    #  - QT_DIR=/app/qt
-    # - GOPROXY=http://goproxy:8081
-    # EM_CONFIG=/home/magnus/.emscripten \
-    ## EMSDK_NODE=/emscripten/node/12.9.1_64bit/bin/node
-
+      GO111MODULE: "on"
     volumes:
-      #- ./.go:/go
       - ./app:/app
-      #- ./qt:/qt
-      # - emscripten:/emscripten
-    stdin_open: yes
-    tty: yes
-    depends_on:
-      - goproxy
-      - apt-cacher-ng
-      - git-cache
+      - jsdata:/home/user/work
 
-  goproxy:
-    image: goproxy/goproxy
+  deploy_linux:
+    image: sandbox/deploylinux
+    build:
+      context: images/deploylinux
+    environment:
+      GO111MODULE: "on"
     volumes:
-      - gocache:/go
-    ports:
-      - "8081:8081"
-    restart: always
+      - ./app:/app
+      - linuxdata:/home/user/work
 
-  apt-cacher-ng:
-    image: mbentley/apt-cacher-ng
-    container_name: apt-cacher-ng
-    ports:
-      - "3142:3142"
+  deploy_wasm:
+    image: sandbox/deploywasm
+    build:
+      context: images/deploywasm
+    environment:
+      GO111MODULE: "on"
     volumes:
-      - aptcache:/var/cache/apt-cacher-ng
-    restart: always
-
-  git-cache:
-    image: kurzdigital/git-cache-http-server
-    ports:
-      - "8080:8080"
-    volumes:
-      - gitcache:/tmp/cache/git
-    restart: always
+      - ./app:/app
+      - wasmdata:/home/user/work
