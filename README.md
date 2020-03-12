@@ -5,10 +5,12 @@
 
 ### Deploy the example
 
-`$ ./build.sh`
+Run on the host machine:
 
-`$ ./deploy_linux.sh`
+`$ ./build.sh deploy_linux`
 
-`$ cd app/cmd/example/deploy/linux` (other platforms work in progress)
+`$ ./deploy_linux.sh` (other platforms work in progress)
 
-`$ ./example`
+`$ cd app/cmd/example1/deploy/linux`
+
+`$ ./example1`

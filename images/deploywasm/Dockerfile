@@ -15,6 +15,12 @@ RUN if grep -q ${GROUP} /etc/group; then \
 
 VOLUME /app
 
+RUN mkdir -p /home/user/.cache \
+    && chown -R ${UID}:${GID} /home/user/.cache
+
+RUN mkdir -p /home/user/work/pkg /home/user/work/bin \
+    && chown -R ${UID}:${GID} /home/user/work/pkg /home/user/work/bin
+
 USER user
 
 WORKDIR /app
