@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-rm -rf deploy linux js rcc*
+rm -rf deploy linux js wasm rcc*
