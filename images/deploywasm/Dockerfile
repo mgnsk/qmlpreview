@@ -14,10 +14,9 @@ RUN if grep -q ${GROUP} /etc/group; then \
     && usermod -a -G ${GROUP} user
 
 RUN mkdir -p /home/user/.cache \
-    && chgrp -R ${GID} \
+    && chown -R user \
     /home/user/.cache \
-    && chmod -R g+rw \
-    /home/user/.cache
+    /home/user/work
 
 USER user
 

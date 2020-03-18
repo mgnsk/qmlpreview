@@ -1,9 +1,9 @@
 version: "3.7"
 
-volumes:
-  jsdata:
-  linuxdata:
-  wasmdata:
+# volumes:
+#   jsdata:
+#   linuxdata:
+#   wasmdata:
 
 services:
   deploy_js:
@@ -14,7 +14,7 @@ services:
       GO111MODULE: "off"
     volumes:
       - ./app:/app
-      - jsdata:/home/user/work
+    #  - jsdata:/home/user/work
 
   deploy_linux:
     image: sandbox/deploylinux
@@ -24,7 +24,7 @@ services:
       GO111MODULE: "on"
     volumes:
       - ./app:/app
-      - linuxdata:/home/user/work
+      #- linuxdata:/home/user/work
 
   deploy_wasm:
     image: sandbox/deploywasm
@@ -34,4 +34,4 @@ services:
       GO111MODULE: "on"
     volumes:
       - ./app:/app
-      - wasmdata:/home/user/work
+    #   - wasmdata:/home/user/work
