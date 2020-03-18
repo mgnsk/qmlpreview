@@ -1,4 +1,4 @@
-### Go QT playground
+### Go QT playground (WIP)
 
 A sandbox for getting started with [Qt binding for Go](https://github.com/therecipe/qt)
 
