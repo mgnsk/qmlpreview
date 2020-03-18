@@ -15,8 +15,7 @@ RUN if grep -q ${GROUP} /etc/group; then \
 
 RUN mkdir -p /home/user/.cache \
     && chown -R user \
-    /home/user/.cache \
-    /home/user/work
+    /home/user
 
 USER user
 

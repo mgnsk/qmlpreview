@@ -3,14 +3,22 @@
 - `docker`
 - `docker-compose`
 
-### Deploy the example
+### Deploy linux
 
-Run on the host machine:
+* `$ ./build.sh deploy_linux`
 
-`$ ./build.sh deploy_linux`
+* `$ ./deploy_linux.sh`
 
-`$ ./deploy_linux.sh` (other platforms work in progress)
+* `$ cd app/cmd/example1/deploy/linux`
 
-`$ cd app/cmd/example1/deploy/linux`
+* `$ ./example1`
 
-`$ ./example1`
+### Deploy js/wasm
+
+* `$ ./build.sh deploy_js`
+
+* `$ ./deploy_js.sh`
+
+* `$ go run app/cmd/serve/main.go -root ./app/cmd/example1/deploy/js`
+
+* Open browser at `http://localhost:8080`
