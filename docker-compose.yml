@@ -15,7 +15,7 @@ services:
     build:
       context: images/deploylinux
     environment:
-      GO111MODULE: "on"
+      GO111MODULE: "off"
     volumes:
       - ./app:/app
 
@@ -24,6 +24,6 @@ services:
     build:
       context: images/deploywasm
     environment:
-      GO111MODULE: "on"
+      GO111MODULE: "off"
     volumes:
       - ./app:/app

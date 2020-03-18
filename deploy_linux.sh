@@ -1,5 +1,3 @@
 #!/bin/bash
 
-set -euo pipefail
-
-docker-compose run --rm deploy_linux qtdeploy build linux ./...
+docker-compose run --rm deploy_linux qtdeploy build linux /app/cmd/example1

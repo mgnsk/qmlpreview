@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
-
 docker-compose build \
     --pull \
     --build-arg GROUP=$(id -gn) \
