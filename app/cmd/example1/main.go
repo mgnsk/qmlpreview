@@ -1,7 +1,9 @@
 package main
 
 import (
+	"flag"
 	"os"
+	"path/filepath"
 
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -10,6 +12,19 @@ import (
 )
 
 func main() {
+	var qmlPath string
+	flag.StringVar(&qmlPath, "qmlpath", "", "Path of QML file")
+	flag.Parse()
+	if qmlPath == "" {
+		panic("Specify -qmlpath")
+	}
+
+	qmlPath, err := filepath.Abs(qmlPath)
+	if err != nil {
+		panic(err)
+	}
+
+	// we can detect js or linux by having build tagged init functions?
 
 	// enable high dpi scaling
 	// useful for devices with high pixel density displays
@@ -29,9 +44,9 @@ func main() {
 
 	// load the embedded qml file
 	// created by either qtrcc or qtdeploy
-	engine.Load(core.NewQUrl3("qrc:/qml/main.qml", 0))
+	//engine.Load(core.NewQUrl3("qrc:/qml/main.qml", 0))
 	// you can also load a local file like this instead:
-	//engine.Load(core.QUrl_FromLocalFile("./qml/main.qml"))
+	engine.Load(core.QUrl_FromLocalFile(qmlPath))
 
 	// start the main Qt event loop
 	// and block until app.Exit() is called

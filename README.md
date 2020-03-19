@@ -13,11 +13,9 @@ A sandbox for getting started with [Qt binding for Go](https://github.com/therec
 
 * `$ ./deploy_linux.sh`
 
-* `$ cd app/cmd/example1/deploy/linux`
+* `./app/cmd/example1/deploy/linux/example1 -qmlpath ./app/cmd/example1/qml/main.qml`
 
-* `$ ./example1`
-
-### Deploy js
+### Deploy js (TODO qmlpath)
 
 * `$ ./build.sh deploy_js`
 
@@ -27,7 +25,7 @@ A sandbox for getting started with [Qt binding for Go](https://github.com/therec
 
 * Open browser at `http://localhost:8080`
 
-### Deploy wasm
+### Deploy wasm (TODO qmlpath)
 
 * `$ ./build.sh deploy_wasm`
 
