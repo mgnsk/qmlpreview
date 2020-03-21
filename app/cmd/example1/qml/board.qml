@@ -5,7 +5,7 @@ import "custom.js" as Custom
 
 ApplicationWindow {
     id: window
-	visible: true
+    visible: true
 
     Rectangle {
         Component.onCompleted: {

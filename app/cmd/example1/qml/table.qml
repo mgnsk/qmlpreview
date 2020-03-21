@@ -10,7 +10,7 @@ Rectangle {
    anchors.fill: parent
     ColumnLayout {
         id: mytable
-      
+
         anchors.fill: parent
         spacing: 0
 
