@@ -2,6 +2,10 @@
 
 A sandbox for getting started with [Qt binding for Go](https://github.com/therecipe/qt)
 
+Currently it draws a configurable board of random colors using dynamic QML.
+
+![Alt text](/screenshot.jpg?raw=true "Optional Title")
+
 ### Requirements
 
 - `docker`
@@ -15,7 +19,14 @@ A sandbox for getting started with [Qt binding for Go](https://github.com/therec
 
 * `./app/cmd/example1/deploy/linux/example1 -qmlpath ./app/cmd/example1/qml/main.qml`
 
-### Deploy js (TODO qmlpath)
+
+## TODO:
+
+* Need to support dynamic QML loading (linux version does it with a flag),
+ideally it the main program should consist of a text editor and a preview pane so that the user can load his own QML program and live-edit it.
+
+
+### Deploy js (TODO)
 
 * `$ ./build.sh deploy_js`
 
@@ -25,7 +36,7 @@ A sandbox for getting started with [Qt binding for Go](https://github.com/therec
 
 * Open browser at `http://localhost:8080`
 
-### Deploy wasm (TODO qmlpath)
+### Deploy wasm (TODO)
 
 * `$ ./build.sh deploy_wasm`
 

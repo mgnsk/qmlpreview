@@ -24,8 +24,6 @@ func main() {
 		panic(err)
 	}
 
-	// we can detect js or linux by having build tagged init functions?
-
 	// enable high dpi scaling
 	// useful for devices with high pixel density displays
 	// such as smartphones, retina displays, ...
@@ -41,6 +39,8 @@ func main() {
 
 	// create the qml application engine
 	engine := qml.NewQQmlApplicationEngine(nil)
+
+	//	qmlString := string(qmlBytes)
 
 	// load the embedded qml file
 	// created by either qtrcc or qtdeploy
