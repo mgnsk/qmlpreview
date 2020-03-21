@@ -17,7 +17,7 @@ Currently it draws a configurable board of random colors using dynamic QML.
 
 * `$ ./deploy_linux.sh`
 
-* `./app/cmd/example1/deploy/linux/example1 -qmlpath ./app/cmd/example1/qml/main.qml`
+* `./app/cmd/example1/deploy/linux/example1 -qmlpath ./app/cmd/example1/qml/board.qml`
 
 
 ## TODO:

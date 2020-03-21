@@ -4,7 +4,7 @@ function createObject(filename, parent, data, createObjectCallback) {
     let finishCreate = function () {
         if (component.status == Component.Ready) {
             createObjectCallback(component, parent, data)
-        } else if (component.status == Component.Error) {
+        } else {
             throw "Error creating object";
         }
     }
