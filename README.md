@@ -1,9 +1,3 @@
-### Go QT playground (WIP)
-
-A sandbox for getting started with [Qt binding for Go](https://github.com/therecipe/qt)
-
-QML live editor written in QML
-
 Browser screenshot
 ![Browser](/screenshot.png "Browser")
 
