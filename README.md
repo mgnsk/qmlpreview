@@ -32,7 +32,10 @@ Browser
 
 * `$ qmlpreview -f ./app/cmd/editor/qml/main.qml` Runs the same editor.
 
-#### Run in browser with gopherjs
+* `$ qmlpreview -f ./app/qml/board.qml` for a chessboard table.
+
+
+#### Run editor in browser with gopherjs
 
 * `$ deploy_js /app/cmd/editor`
 
@@ -40,7 +43,7 @@ Browser
 
 * Open browser at http://localhost:8080
 
-#### Run in browser with go wasm
+#### Run editor in browser with go wasm
 
 * `$ deploy_wasm /app/cmd/editor`
 

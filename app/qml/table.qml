@@ -19,6 +19,7 @@ Rectangle {
                 for (let i = 0; i < wrapper.rows; i++) {
                     let obj = component.createObject(parent, {
                         cols: wrapper.cols,
+                        index: i,
                     });
                     if (obj == null) {
                         throw "Error creating row.qml";
