@@ -2,27 +2,51 @@
 
 A sandbox for getting started with [Qt binding for Go](https://github.com/therecipe/qt)
 
-Currently it draws a configurable board of random colors using dynamic QML.
+QML editor
 
-![Alt text](/screenshot.jpg?raw=true "Optional Title")
+Linux
+![Linux](/screenshot.jpg "Linux")
+
+Browser
+![Browser](/screenshot-browser.jpg "Browser")
 
 ### Requirements
 
 - `docker`
 - `docker-compose`
 - `direnv` (https://direnv.net)
+- `go` (for local tools)
 
-#### Deploy linux (in a direnv loaded environment)
+### Build
+* Set up direnv
 
 * `$ ./build.sh`
 
+#### Run editor
+* `$ install_linux /app/cmd/editor`
+
+* `$ editor`
+
+#### Preview any qml file:
 * `$ install_linux /app/cmd/qmlpreview`
 
-* `$ qmlpreview -f $REPO/app/qml/board.qml`
+* `$ qmlpreview -f ./app/cmd/editor/qml/main.qml` Runs the same editor.
 
-#### Deploy js (TODO)
+#### Run in browser with gopherjs
 
-#### Deploy wasm (TODO)
+* `$ deploy_js /app/cmd/editor`
+
+* `$ serve -root ./app/cmd/editor/deploy/js`
+
+* Open browser at http://localhost:8080
+
+#### Run in browser with go wasm
+
+* `$ deploy_wasm /app/cmd/editor`
+
+* `$ serve -root ./app/cmd/editor/deploy/wasm`
+
+* Open browser at http://localhost:8080
 
 #### Development
 

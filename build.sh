@@ -7,7 +7,7 @@ docker-compose build \
     --pull \
     --build-arg GROUP=$(id -gn) \
     --build-arg GID=$(id -g) \
-    deploy_linux #deploy_js deploy_wasm
+    deploy_linux deploy_js deploy_wasm
 
 docker image prune -f
 
