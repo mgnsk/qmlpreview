@@ -4,11 +4,8 @@ A sandbox for getting started with [Qt binding for Go](https://github.com/therec
 
 QML editor written in QML
 
-Linux
-![Linux](/screenshot.jpg "Linux")
-
-Browser
-![Browser](/screenshot-browser.jpg "Browser")
+Browser screenshot
+![Browser](/screenshot-browser.png "Browser")
 
 ### Requirements
 
@@ -21,7 +18,7 @@ Browser
 
 * `$ ./build.sh`
 
-#### Run editor
+#### Run editor on linux
 * `$ install_linux /app/cmd/editor`
 
 * `$ editor`
