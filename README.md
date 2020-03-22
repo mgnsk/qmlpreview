@@ -1,5 +1,4 @@
-Browser screenshot
-![Browser](/screenshot.png "Browser")
+![Browser screenshot](/screenshot.png "Browser screenshot")
 
 ### Requirements
 
