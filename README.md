@@ -2,7 +2,7 @@
 
 A sandbox for getting started with [Qt binding for Go](https://github.com/therecipe/qt)
 
-QML editor
+QML editor written in QML
 
 Linux
 ![Linux](/screenshot.jpg "Linux")
@@ -15,7 +15,6 @@ Browser
 - `docker`
 - `docker-compose`
 - `direnv` (https://direnv.net)
-- `go` (for local tools)
 
 ### Build
 * Set up direnv
@@ -30,7 +29,7 @@ Browser
 #### Preview any qml file:
 * `$ install_linux /app/cmd/qmlpreview`
 
-* `$ qmlpreview -f ./app/cmd/editor/qml/main.qml` Runs the same editor.
+* `$ qmlpreview -f ./app/cmd/editor/qml/main.qml` Runs the editor.
 
 * `$ qmlpreview -f ./app/qml/board.qml` for a chessboard table.
 
@@ -39,7 +38,7 @@ Browser
 
 * `$ deploy_js /app/cmd/editor`
 
-* `$ serve -root ./app/cmd/editor/deploy/js`
+* `$ docker-compose run --rm -p "8080:8080" deploy_linux go run /app/cmd/serve/main.go -root /app/cmd/editor/deploy/js`
 
 * Open browser at http://localhost:8080
 
@@ -47,7 +46,7 @@ Browser
 
 * `$ deploy_wasm /app/cmd/editor`
 
-* `$ serve -root ./app/cmd/editor/deploy/wasm`
+* `$ docker-compose run --rm -p "8080:8080" deploy_linux go run /app/cmd/serve/main.go -root /app/cmd/editor/deploy/wasm`
 
 * Open browser at http://localhost:8080
 

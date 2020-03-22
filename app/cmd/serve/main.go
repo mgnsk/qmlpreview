@@ -13,7 +13,7 @@ func main() {
 		addr string
 	)
 	flag.StringVar(&root, "root", "", "Root directory of server")
-	flag.StringVar(&addr, "addr", ":8080", "Address to serve on")
+	flag.StringVar(&addr, "addr", "0.0.0.0:8080", "Address to serve on")
 	flag.Parse()
 	if root == "" {
 		panic("Specify -root directory")

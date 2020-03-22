@@ -36,14 +36,14 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 
 Rectangle {
-Layout.fillHeight: true
-Layout.fillWidth: true
-Button {
-    text: "Button"
-    onClicked: {
-        console.log("Hello");
+    Layout.fillHeight: true
+    Layout.fillWidth: true
+    Button {
+        text: "Button"
+        onClicked: {
+            console.log("Hello");
+        }
     }
-}
 }`
                 font.family: "Monospace"
                 font.pointSize: 8
