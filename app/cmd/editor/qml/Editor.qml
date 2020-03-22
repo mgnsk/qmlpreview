@@ -8,17 +8,6 @@ ColumnLayout {
     id: customcol
     spacing: 0
 
-    Button {
-        text: "Run"
-        onClicked: {
-            for (let i = 0; i < previewCol.children.length; i++) {
-                previewCol.children[i].destroy()
-            }
-
-            Qt.createQmlObject(src.text, previewCol, "preview");
-        }
-    }
-
     Rectangle {
         id: editorPane
 
@@ -49,6 +38,14 @@ Rectangle {
                 font.pointSize: 8
                 color: "blue"
                 focus: true
+
+                onTextChanged: {
+                    for (let i = 0; i < previewCol.children.length; i++) {
+                        previewCol.children[i].destroy()
+                    }
+
+                    Qt.createQmlObject(src.text, previewCol, "preview");
+                }
             }
         }
     }

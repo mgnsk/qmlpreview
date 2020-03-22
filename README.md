@@ -2,10 +2,10 @@
 
 A sandbox for getting started with [Qt binding for Go](https://github.com/therecipe/qt)
 
-QML editor written in QML
+QML live editor written in QML
 
 Browser screenshot
-![Browser](/screenshot-browser.png "Browser")
+![Browser](/screenshot.png "Browser")
 
 ### Requirements
 
