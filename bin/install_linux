@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+deploy_linux $1
+
+bin=$(basename $1)
+
+install -v $REPO/app/cmd/$bin/deploy/linux/$bin $GOBIN

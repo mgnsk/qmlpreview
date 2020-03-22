@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -euo pipefail
+
+docker-compose -f $REPO/docker-compose.yml run --rm deploy_wasm qtdeploy build wasm $1

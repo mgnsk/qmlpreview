@@ -10,38 +10,20 @@ Currently it draws a configurable board of random colors using dynamic QML.
 
 - `docker`
 - `docker-compose`
+- `direnv` (https://direnv.net)
 
-### Deploy linux
+#### Deploy linux (in a direnv loaded environment)
 
-* `$ ./build.sh deploy_linux`
+* `$ ./build.sh`
 
-* `$ ./deploy_linux.sh`
+* `$ install_linux /app/cmd/qmlpreview`
 
-* `./app/cmd/example1/deploy/linux/example1 -qmlpath ./app/cmd/example1/qml/board.qml`
+* `$ qmlpreview -f $REPO/app/qml/board.qml`
 
+#### Deploy js (TODO)
 
-## TODO:
+#### Deploy wasm (TODO)
 
-* Need to support dynamic QML loading (linux version does it with a flag),
-ideally it the main program should consist of a text editor and a preview pane so that the user can load his own QML program and live-edit it.
+#### Development
 
-
-### Deploy js (TODO)
-
-* `$ ./build.sh deploy_js`
-
-* `$ ./deploy_js.sh`
-
-* `$ go run app/cmd/serve/main.go -root ./app/cmd/example1/deploy/js`
-
-* Open browser at `http://localhost:8080`
-
-### Deploy wasm (TODO)
-
-* `$ ./build.sh deploy_wasm`
-
-* `$ ./deploy_wasm.sh`
-
-* `$ go run app/cmd/serve/main.go -root ./app/cmd/example1/deploy/wasm`
-
-* Open browser at `http://localhost:8080`
+For proper go environment, use remote containers plugin in VSCode and attach to deploy_linux.

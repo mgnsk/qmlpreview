@@ -13,10 +13,10 @@ import (
 
 func main() {
 	var qmlPath string
-	flag.StringVar(&qmlPath, "qmlpath", "", "Path of QML file")
+	flag.StringVar(&qmlPath, "f", "", "Path of QML file")
 	flag.Parse()
 	if qmlPath == "" {
-		panic("Specify -qmlpath")
+		panic("Specify -f for the QML file")
 	}
 
 	qmlPath, err := filepath.Abs(qmlPath)

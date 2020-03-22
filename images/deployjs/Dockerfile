@@ -20,3 +20,5 @@ RUN mkdir -p /home/user/.cache \
 USER user
 
 WORKDIR /app
+
+SHELL ["/bin/bash"]

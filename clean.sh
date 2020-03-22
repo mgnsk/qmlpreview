@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-cd app/cmd/example1
+cd $REPO/app/cmd/qmlpreview
 ./clean.sh

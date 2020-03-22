@@ -8,15 +8,19 @@ import (
 )
 
 func main() {
-	var root string
+	var (
+		root string
+		addr string
+	)
 	flag.StringVar(&root, "root", "", "Root directory of server")
+	flag.StringVar(&addr, "addr", ":8080", "Address to serve on")
 	flag.Parse()
 	if root == "" {
 		panic("Specify -root directory")
 	}
 
 	fs := http.FileServer(http.Dir(root))
-	log.Print("Serving " + root + " on http://localhost:8080")
+	log.Printf("Serving %s on %s", root, addr)
 	err := http.ListenAndServe(":8080", http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
 		resp.Header().Add("Cache-Control", "no-cache")
 		if strings.HasSuffix(req.URL.Path, ".wasm") {
