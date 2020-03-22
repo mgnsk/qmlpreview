@@ -1,5 +1,3 @@
-![Browser screenshot](/screenshot.png "Browser screenshot")
-
 ### Requirements
 
 - `docker`
@@ -24,7 +22,7 @@
 * `$ qmlpreview -f ./app/qml/board.qml` for a chessboard table.
 
 
-#### Run editor in browser with gopherjs
+#### Run editor in browser with gopherjs ([demo](https://mgnsk.github.io/qmlpreview/js/index.html))
 
 * `$ deploy_js /app/cmd/editor`
 
@@ -32,7 +30,7 @@
 
 * Open browser at http://localhost:8080
 
-#### Run editor in browser with go wasm
+#### Run editor in browser with go wasm ([demo](https://mgnsk.github.io/qmlpreview/wasm/index.html))
 
 * `$ deploy_wasm /app/cmd/editor`
 

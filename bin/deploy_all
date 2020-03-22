@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+deploy_linux $1
+deploy_js $1
+deploy_wasm $1
