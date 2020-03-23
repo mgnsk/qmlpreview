@@ -41,7 +41,7 @@ Rectangle {
 
                 onTextChanged: {
                     for (let i = 0; i < previewCol.children.length; i++) {
-                        previewCol.children[i].destroy()
+                        previewCol.children[i].destroy();
                     }
 
                     Qt.createQmlObject(src.text, previewCol, "preview");

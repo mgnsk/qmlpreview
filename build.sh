@@ -10,6 +10,3 @@ docker-compose build \
     deploy_linux deploy_js deploy_wasm
 
 docker image prune -f
-
-cd $REPO/app/cmd/serve
-go install ./...
