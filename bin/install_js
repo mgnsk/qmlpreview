@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -euo pipefail
+
+app=$1
+
+deploy -p js -a $app
+
+mkdir -p $REPO/deploy/js
+
+target=$REPO/deploy/js/$app
+
+rm -rf $target
+
+src=$REPO/app/cmd/$app/deploy/js
+
+cp -r $src $target

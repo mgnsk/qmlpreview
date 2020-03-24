@@ -18,7 +18,7 @@ RowLayout {
             id: scrollView
             anchors.fill: parent
 
-            TextArea {
+            TextEdit {
                 id: src
                 text: `import QtQuick 2.7
 import QtQuick.Layouts 1.12

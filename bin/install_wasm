@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -euo pipefail
+
+app=$1
+
+deploy -p wasm -a $app
+
+mkdir -p $REPO/deploy/wasm
+
+target=$REPO/deploy/wasm/$app
+
+rm -rf $target
+
+src=$REPO/app/cmd/$app/deploy/wasm
+
+cp -r $src $target

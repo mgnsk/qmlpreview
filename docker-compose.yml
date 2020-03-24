@@ -18,6 +18,7 @@ services:
       GO111MODULE: "off"
     volumes:
       - ./app:/app
+      - ./deploy:/deploy # Reusing the container for serving.
 
   deploy_wasm:
     image: sandbox/deploywasm

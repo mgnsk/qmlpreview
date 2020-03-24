@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -euo pipefail
+
+platform=""
+cmd=""
+
+print_usage() {
+  echo "Deploy an application for a platform. Usage: -p [platform] -a [app name]"
+}
+
+while getopts 'p:a:' flag; do
+  case "${flag}" in
+    p) platform="$OPTARG" ;;
+    a) app="${OPTARG}" ;;
+    *) print_usage
+      exit 1 ;;
+  esac
+done
+
+containerAppDir="/app/cmd/$app"
+
+invalid_platform() {
+  echo "Invalid platform"
+}
+
+case "$platform" in
+  "linux") deploy_linux $containerAppDir ;;
+  "js") deploy_js $containerAppDir ;;
+  "wasm") deploy_wasm $containerAppDir ;;
+  *) invalid_platform
+    echo "Invalid platform" 1; exit 1 ;;
+esac

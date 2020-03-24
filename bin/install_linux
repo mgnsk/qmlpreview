@@ -2,8 +2,10 @@
 
 set -euo pipefail
 
-deploy_linux $1
+app=$1
 
-bin=$(basename $1)
+deploy -p linux -a $app
 
-install -v $REPO/app/cmd/$bin/deploy/linux/$bin $GOBIN
+mkdir -p $REPO/deploy/linux
+
+install -v $REPO/app/cmd/$app/deploy/linux/$app $REPO/deploy/linux/$app

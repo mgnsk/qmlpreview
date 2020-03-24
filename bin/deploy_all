@@ -2,6 +2,8 @@
 
 set -euxo pipefail
 
-deploy_linux $1
-deploy_js $1
-deploy_wasm $1
+app=$1
+
+deploy -p linux -a $app
+deploy -p js -a $app
+deploy -p wasm -a $app
