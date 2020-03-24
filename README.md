@@ -1,5 +1,4 @@
-QML live preview
-![QML live preview](/screenshot.png "QML live preview") 
+## QML live preview
 
 ### Requirements
 
