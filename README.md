@@ -17,7 +17,7 @@
 * `$ editor`
 
 #### Preview any qml file:
-* `$ install_linux qmlpreview` to install the tool into `bin` directory.
+* `$ install_linux qmlpreview` to install the tool into `deploy/linux` directory.
 
 * `$ qmlpreview -f app/cmd/editor/qml/main.qml` Runs the editor.
 
